@@ -15,7 +15,7 @@ class Solution {
         time2[0]=h2;
         time2[1]=m2;
         time2[2]=s2;
-        return countSecondsTillNow(time1)-countSecondsTillNow(time2);
+        return countSecondsTillNow(time2)-countSecondsTillNow(time1);
 
     }
 
