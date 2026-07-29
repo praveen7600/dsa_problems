@@ -19,23 +19,6 @@ class Solution {
         }
         while(right<s.length()){
 
-            while(left<right && k==0){
-                if(minlen>right-left+1){
-                    startindex=left;
-                    endindex=right;
-                    minlen=right-left+1;
-                }
-                
-                char leftchar=s.charAt(left);
-                if(mpp.containsKey(leftchar)){
-                    mpp.put(leftchar,mpp.get(leftchar)+1);
-                    if(mpp.get(leftchar)>0){
-                        k++;
-                    }
-                }
-                left++;
-            }
-
             char ch=s.charAt(right);
             if(mpp.containsKey(ch)){
                 mpp.put(ch,mpp.get(ch)-1);
@@ -43,11 +26,8 @@ class Solution {
                     k--;
                 }
             }
-    
-            right++;
-        }
 
-        while(left<right && k==0){
+            while(left<=right && k==0){
                 if(minlen>right-left+1){
                     startindex=left;
                     endindex=right;
@@ -63,6 +43,13 @@ class Solution {
                 }
                 left++;
             }
-        return minlen==Integer.MAX_VALUE?"":s.substring(startindex,endindex);
+
+           
+    
+            right++;
+        }
+
+        
+        return minlen==Integer.MAX_VALUE?"":s.substring(startindex,endindex+1);
     }
 }
