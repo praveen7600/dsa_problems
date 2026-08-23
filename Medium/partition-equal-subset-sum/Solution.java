@@ -9,29 +9,24 @@ class Solution {
             return false;
         }
         sum/=2;
-        
-        int[][] dp=new int[n][sum+1];
-        for(int []row:dp){
-            Arrays.fill(row,-1);
+        boolean[][] dp=new boolean[n][sum+1];
+        for(int i=0;i<n;i++){
+            dp[i][0]=true;
         }
-        return helper(arr,sum,n-1,dp);
+        if(arr[0] <= sum) {
+            dp[0][arr[0]] = true;
+        }
+        for(int i=1;i<n;i++){
+            for(int target=1;target<=sum;target++){
+                boolean pick=false;
+                if(arr[i]<=target){
+                    pick=dp[i-1][target-arr[i]];
+                }
+                boolean notpick=dp[i-1][target];
+                dp[i][target]=pick || notpick;
+            }
+        }
+        return dp[n-1][sum];
     }
-    static boolean helper(int arr[],int sum,int ind,int[][] dp){
-        if(sum==0){
-            return true;
-        }
-        if(ind==0){
-            return arr[ind]==sum;
-        }
-        if(dp[ind][sum]!=-1){
-            return dp[ind][sum]==1;
-        }
-        boolean pick=false;
-        if(arr[ind]<=sum){
-            pick=helper(arr,sum-arr[ind],ind-1,dp);
-        }
-        boolean notpick=helper(arr,sum,ind-1,dp);
-        dp[ind][sum]= (pick||notpick)?1:0;
-        return pick || notpick;
-    }
+    
 }
