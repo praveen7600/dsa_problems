@@ -1,19 +1,18 @@
 class Solution {
     public String[] createGrid(int m, int n) {
-        String[] result=new String[m];
+        String[] res=new String[m];
         for(int i=0;i<m;i++){
-            StringBuilder s=new StringBuilder();
+            StringBuilder str=new StringBuilder();
             for(int j=0;j<n;j++){
                 if(i==0 || j==n-1){
-                    s.append(".");
+                    str.append(".");
                 }
                 else{
-                    s.append("#");
+                    str.append("#");
                 }
             }
-            result[i]=s.toString();
+            res[i]=str.toString();
         }
-
-        return result;
+        return res;
     }
 }
